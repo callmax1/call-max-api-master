@@ -1,0 +1,19 @@
+Docker build:
+
+docker build -f Dockerfile -t call-max-api-api .
+
+docker images
+
+docker run -p 9000:9000 call-max-api-api
+
+
+
+AWS:
+
+chmod 400 call-max.pem
+
+ssh -i "call-max.pem" ubuntu@ec2-15-206-209-139.ap-south-1.compute.amazonaws.com
+
+scp -i "call-max.pem"  -r /home/inturi/projects/spring-boot/loadersand-dozers-api/target/call-max-api.jar ubuntu@ec2-15-206-209-139.ap-south-1.compute.amazonaws.com:~/callmaz/
+
+sudo nohup java -jar call-max-api.jar &

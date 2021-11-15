@@ -1,0 +1,55 @@
+server:
+  port: 9000
+
+## spring.main.banner-mode=off
+
+## default connection pool
+spring:
+  servelet:
+    multipart:
+      max-file-size: 500KB
+      max-request-size: 500KB
+  datasource:
+    hikari:
+      maximumPoolSize: 2
+      connectionTimeout: 60000
+      idleTimeout: 600000
+      maxLifetime: 1800000
+
+## PostgreSQL
+db:
+  platform: postgres
+  driver: org.postgresql.Driver
+  url: jdbc:postgresql://localhost:5432/call-max
+  username: postgres
+  password: Design_20
+
+# Hibernate
+hibernate:
+  dialect: org.hibernate.dialect.PostgreSQLDialect
+  show_sql: true
+  hbm2ddl.auto: update
+
+entity:
+  manager:
+    packagesToScan: com.oxycreation.model
+
+jwtSecret: xadmin
+jwtExpirationMs: 86400000
+
+aws:
+  access:
+      key:
+        id: AKIAVV2XMWPWA47GCEMW
+        secret:  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
+  region:  ap-south-1
+  s3.bucket:  call-max-documents
+  url: https://call-max-documents.s3.ap-south-1.amazonaws.com/
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
+  level:
+    org.springframework: info
+    org.hibernate.SQL: debug
+
